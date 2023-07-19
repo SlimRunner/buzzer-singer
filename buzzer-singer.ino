@@ -1,15 +1,26 @@
 #include "melody.hpp"
 
-Melody mel(false, 7);
+constexpr int melodyPin = 2;
+constexpr int switchPin = 7;
+
+Melody mel(false, melodyPin);
 
 void setup() {
   Serial.begin(9600);
-  mel.toggle();
+  pinMode(switchPin, INPUT_PULLUP);
+  pinMode(melodyPin, INPUT);
 }
 
 void loop() {
-  static unsigned long start = 0;
+  static int start = 0;
+  static bool wasPressed = digitalRead(switchPin);
+  bool isPressed = digitalRead(switchPin);
+  if (isPressed != wasPressed && isPressed) {
+    start = millis();
+    mel.toggle();
+  }
   if (!mel.getTone(millis() - start)) {
     start = millis();
   }
+  wasPressed = isPressed;
 }
