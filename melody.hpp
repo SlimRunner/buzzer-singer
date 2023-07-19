@@ -159,12 +159,17 @@ public:
 
   void toggle() { state = (state == 1 ? 2 : 1); }
 
-  int getTone(unsigned long time) {
+  bool getTone(unsigned long time) {
+    static int lastIndex = 0;
     int index = findTiming(time * BEAT_UNIT);
-    if (isNotRest(index)) {
-      tone(m_pin, eqlTemp(note(index)));
-    } else {
-      noTone(m_pin);
+    if (lastIndex != index) {
+      if (isNotRest(index)) {
+        tone(m_pin, eqlTemp(note(index)));
+      } else {
+        noTone(m_pin);
+      }
     }
+    lastIndex = index;
+    return time * BEAT_UNIT < timing(len());
   }
 };
