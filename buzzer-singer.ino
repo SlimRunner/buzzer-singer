@@ -6,7 +6,6 @@ constexpr int switchPin = 7;
 Melody mel(false, melodyPin);
 
 void setup() {
-  Serial.begin(9600);
   pinMode(switchPin, INPUT_PULLUP);
   pinMode(melodyPin, INPUT);
 }
