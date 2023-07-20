@@ -31,7 +31,7 @@ public:
    * equal to 2 ^ 6 * 3 ^ 6. That way there is almost always an exact way to
    * convert to triplets.
    */
-  int duration() { return (m_serial & 0xffff); }
+  int duration() const noexcept { return (m_serial & 0xffff); }
 
   /**
    * @brief Determine if this note is rest or pitch
@@ -39,7 +39,7 @@ public:
    * @return true if the note is not a pitch,
    * @return otherwise the note is a rest
    */
-  bool isPitch() { return (m_serial >> 23 & 0x800000); }
+  bool isPitch() const noexcept { return (m_serial >> 23 & 0x800000); }
 
   /**
    * @brief Get the pitch of this note
@@ -47,14 +47,14 @@ public:
    * @return int value between -54 and 73 where 0 represents 440 hz in equal
    * temperament
    */
-  int pitch() { return (m_serial >> 16 & 0x7f) - 54; }
+  int pitch() const noexcept { return (m_serial >> 16 & 0x7f) - 54; }
 
   /**
    * @brief Get the serial of this note
    *
    * @return int that represents the bitfield that contains the note properties
    */
-  int serial() { return m_serial; }
+  int serial() const noexcept { return m_serial; }
 };
 
 Note::Note(int serial) : m_serial(serial) {}
