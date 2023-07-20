@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @brief Manages a note and its attributes (type, duration, and pitch) within
  * an int with the following memory structure (little endian): 0-15 [duration],
