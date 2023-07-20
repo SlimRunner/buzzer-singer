@@ -1,4 +1,4 @@
-#include "melody.hpp"
+#include "Melody.hpp"
 #include "Toggle.hpp"
 
 constexpr int melodyPin = 2;
