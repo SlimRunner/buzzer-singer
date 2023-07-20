@@ -48,6 +48,13 @@ public:
    * temperament
    */
   int pitch() { return (m_serial >> 16 & 0x7f) - 54; }
+
+  /**
+   * @brief Get the serial of this note
+   *
+   * @return int that represents the bitfield that contains the note properties
+   */
+  int serial() { return m_serial; }
 };
 
 Note::Note(int serial) : m_serial(serial) {}
