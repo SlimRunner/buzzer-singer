@@ -31,21 +31,21 @@ public:
    * @return true if switch state has changed
    * @return false otherwise
    */
-  bool update() {};
+  bool update();
   /**
    * @brief Determine the state of the last update
    * 
    * @return true if last update recorded HIGH,
    * @return false otherwise
    */
-  bool isHigh() {};
+  bool isHigh();
   /**
    * @brief Determine the state of the last update
    * 
    * @return true if last update recorded LOW,
    * @return false otherwise
    */
-  bool isLow() {};
+  bool isLow();
 };
 
 Toggle::Toggle(uint8_t pin) : m_pin(pin) {
