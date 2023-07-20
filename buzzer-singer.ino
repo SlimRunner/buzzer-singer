@@ -1,9 +1,10 @@
 #include "melody.hpp"
+#include "Toggle.hpp"
 
 constexpr int melodyPin = 2;
 constexpr int switchPin = 7;
 
-Melody mel(false, melodyPin);
+// Melody mel(false, melodyPin);
 
 void setup() {
   pinMode(switchPin, INPUT_PULLUP);
@@ -11,15 +12,11 @@ void setup() {
 }
 
 void loop() {
-  static int start = 0;
-  static bool wasPressed = digitalRead(switchPin);
-  bool isPressed = digitalRead(switchPin);
-  if (isPressed != wasPressed && isPressed) {
-    start = millis();
-    mel.toggle();
+  static Toggle songToggle(switchPin);
+
+  if (songToggle.update() && songToggle.isHigh()) {
+    // code when press switch has toggled
+    // restart timer of Melody and switch song
   }
-  if (!mel.getTone(millis() - start)) {
-    start = millis();
-  }
-  wasPressed = isPressed;
+  // update melody
 }
