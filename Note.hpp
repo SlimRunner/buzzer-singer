@@ -17,6 +17,7 @@ public:
    *
    */
   Note() = delete;
+  
   /**
    * @brief Construct a new Note object
    *
@@ -24,6 +25,7 @@ public:
    * pitch, and 23 is type
    */
   Note(unsigned long bitfield);
+
   // default destructor
 
   /**
