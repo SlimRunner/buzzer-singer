@@ -20,9 +20,10 @@ public:
   /**
    * @brief Construct a new Note object
    *
-   * @param serial serialized bitfield of properties (see class description).
+   * @param bitfield bitfield of properties where 0-15 is duration, 16-22 is
+   * pitch, and 23 is type
    */
-  Note(unsigned long serial);
+  Note(unsigned long bitfield);
   // default destructor
 
   /**
@@ -55,9 +56,8 @@ public:
    *
    * @return int that represents the bitfield that contains the note properties
    */
-  unsigned long serial() const noexcept {
+  unsigned long getBitfield() const noexcept {
     return 0UL + m_bitfield << 16 | m_length;
-    ;
   }
 };
 

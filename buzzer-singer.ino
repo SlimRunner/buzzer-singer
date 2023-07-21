@@ -16,7 +16,8 @@ void setup() {
 }
 
 void loop() {
-  constexpr int PLSIZE = static_cast<int>(sizeof(melodies) / sizeof(melodies[0]));
+  constexpr int PLSIZE =
+      static_cast<int>(sizeof(melodies) / sizeof(melodies[0]));
   static Toggle songToggle(switchPin);
   static int songIndex = PLSIZE;
   if (songToggle.update() && songToggle.isHigh()) {

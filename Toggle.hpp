@@ -14,20 +14,20 @@ private:
 public:
   /**
    * @brief Default constructor is disallowed
-   * 
+   *
    */
   Toggle() = delete;
   /**
    * @brief Construct a new Toggle object with a given initial state
    *
-   * @param pin initial state of the switch
+   * @param pin pin id where switch is connected
    */
   Toggle(uint8_t m_pin);
   // default destructor
 
   /**
    * @brief Update the current stored value of the switch
-   * 
+   *
    * @return a bool value that is true when the state has changed
    * @return true if switch state has changed
    * @return false otherwise
@@ -35,14 +35,14 @@ public:
   bool update();
   /**
    * @brief Determine the state of the last update
-   * 
+   *
    * @return true if last update recorded HIGH,
    * @return false otherwise
    */
   bool isHigh();
   /**
    * @brief Determine the state of the last update
-   * 
+   *
    * @return true if last update recorded LOW,
    * @return false otherwise
    */
@@ -50,7 +50,7 @@ public:
 
   /**
    * @brief Determine the state of the simulated toggle
-   * 
+   *
    * @return true if the toggle would be ON,
    * @return false otherwise
    */
@@ -58,7 +58,7 @@ public:
 
   /**
    * @brief Determine the state of the simulated toggle
-   * 
+   *
    * @return true if the toggle would be OFF,
    * @return false otherwise
    */
@@ -79,18 +79,10 @@ bool Toggle::update() {
   return changed;
 }
 
-bool Toggle::isHigh() {
-  return m_switchState == HIGH;
-}
+bool Toggle::isHigh() { return m_switchState == HIGH; }
 
-bool Toggle::isLow() {
-  return m_switchState == LOW;
-}
+bool Toggle::isLow() { return m_switchState == LOW; }
 
-bool Toggle::isOn() { 
-  return m_toggleState; 
-}
+bool Toggle::isOn() { return m_toggleState; }
 
-bool Toggle::isOff() { 
-  return !m_toggleState; 
-}
+bool Toggle::isOff() { return !m_toggleState; }
