@@ -87,7 +87,6 @@ public:
 
 void Melody::play() {
   if (m_song[m_index].isPitch()) {
-    // Serial.println(m_prevIndex);
     int pitch = m_song[m_index].pitch();
     if (m_index != m_prevIndex) {
       tone(m_pin, eqlTemp(pitch));
@@ -118,9 +117,6 @@ inline void Melody::advance() {
   unsigned long timeDelta = now - prevTime;
   prevTime = now;
 
-  Serial.print(m_index);
-  Serial.print(", ");
-  Serial.println(m_time);
   if (m_resume) {
     // prevents time jumping from a prolonged delay
     m_resume = false;
