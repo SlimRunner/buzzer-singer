@@ -27,6 +27,6 @@ void loop() {
     songIndex = (songIndex + 1) % (PLSIZE + 1);
   }
   if (songIndex < PLSIZE) {
-    melodies[songIndex].play();
+    melodies[songIndex].advance();
   }
 }
