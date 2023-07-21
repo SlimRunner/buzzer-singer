@@ -8,7 +8,8 @@
  */
 class Note {
 private:
-  int m_serial;
+  unsigned int m_length : 16;
+  unsigned int m_bitfield : 8;
 
 public:
   /**
@@ -21,7 +22,7 @@ public:
    *
    * @param serial serialized bitfield of properties (see class description).
    */
-  Note(int serial);
+  Note(unsigned long serial);
   // default destructor
 
   /**
@@ -31,7 +32,7 @@ public:
    * equal to 2 ^ 6 * 3 ^ 6. That way there is almost always an exact way to
    * convert to triplets.
    */
-  int duration() const noexcept { return (m_serial & 0xffff); }
+  int duration() const noexcept { return m_length; }
 
   /**
    * @brief Determine if this note is rest or pitch
@@ -39,7 +40,7 @@ public:
    * @return true if the note is not a pitch,
    * @return otherwise the note is a rest
    */
-  bool isPitch() const noexcept { return (m_serial >> 23 & 0x800000); }
+  bool isPitch() const noexcept { return (m_bitfield >> 7 & 0x1); }
 
   /**
    * @brief Get the pitch of this note
@@ -47,14 +48,18 @@ public:
    * @return int value between -54 and 73 where 0 represents 440 hz in equal
    * temperament
    */
-  int pitch() const noexcept { return (m_serial >> 16 & 0x7f) - 54; }
+  int pitch() const noexcept { return (m_bitfield & 0x7f) - 54; }
 
   /**
-   * @brief Get the serial of this note
+   * @brief Get the bitfield of this note
    *
    * @return int that represents the bitfield that contains the note properties
    */
-  int serial() const noexcept { return m_serial; }
+  unsigned long serial() const noexcept {
+    return 0UL + m_bitfield << 16 | m_length;
+    ;
+  }
 };
 
-Note::Note(int serial) : m_serial(serial) {}
+Note::Note(unsigned long bitfield)
+    : m_length(bitfield & 0xffff), m_bitfield(bitfield >> 16) {}
