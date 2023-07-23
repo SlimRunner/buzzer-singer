@@ -19,6 +19,8 @@ private:
   int m_prevIndex;
   int m_timeNext;
 
+  const int timeScalar;
+
   inline double eqlTemp(int note) { return pow(2, note / 12.0) * 440; }
 
   inline void softReset() {
@@ -56,7 +58,21 @@ public:
    * end
    */
   Melody(const int pin, const Note *song, int size, bool repeat);
-  
+
+  /**
+   * @brief Construct a new Melody object
+   *
+   * @param pin pin id where buzzer is connected
+   * @param song pointer to first element of an array of Notes
+   * @param size size of the given collection of Notes
+   * @param repeat determines if the song will repeat or stop upon reaching the
+   * end
+   * @param bpm beats per minute of the song
+   * @param quarter duration of a quarter note
+   */
+  Melody(const int pin, const Note *song, int size, bool repeat, int bpm,
+         int quarter);
+
   // default destructor
 
   /**
@@ -99,20 +115,28 @@ void Melody::play() {
 
 Melody::Melody(const int pin, const Note *song, int size)
     : m_pin(pin), m_song(song), m_size(size), m_repeat(true), m_time(0),
-      m_resume(true), m_index(0) {
+      m_resume(true), m_index(0), timeScalar(32 * 128) {
   m_timeNext = m_song[m_index].duration();
   m_prevIndex = -1;
 }
 
 Melody::Melody(const int pin, const Note *song, int size, bool repeat)
     : m_pin(pin), m_song(song), m_size(size), m_repeat(repeat), m_time(0),
-      m_resume(true), m_index(0) {
+      m_resume(true), m_index(0), timeScalar(32 * 128) {
+  m_timeNext = m_song[m_index].duration();
+  m_prevIndex = -1;
+}
+
+inline Melody::Melody(const int pin, const Note *song, int size, bool repeat,
+                      int bpm, int quarter)
+    : m_pin(pin), m_song(song), m_size(size), m_repeat(repeat), m_time(0),
+      m_resume(true), m_index(0), timeScalar(quarter * bpm) {
   m_timeNext = m_song[m_index].duration();
   m_prevIndex = -1;
 }
 
 inline void Melody::advance() {
-  constexpr double BEAT_UNIT = 32 * 128.0 / 60000.0;
+  const double BEAT_UNIT = timeScalar / 60000.0;
   static unsigned long prevTime = millis();
   unsigned long now = millis();
   unsigned long timeDelta = now - prevTime;
