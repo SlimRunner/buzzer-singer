@@ -6,8 +6,8 @@ constexpr int melodyPin = 2;
 constexpr int switchPin = 7;
 
 Melody melodies[2] = {
-    {melodyPin, song1, sizeof(song1) / sizeof(song1[0]), true, 128, 32},
-    {melodyPin, song2, sizeof(song2) / sizeof(song2[0]), true, 180, 32}};
+    {melodyPin, zelda2, sizeof(zelda2) / sizeof(zelda2[0]), true, 128, 32},
+    {melodyPin, passcg, sizeof(passcg) / sizeof(passcg[0]), true, 180, 32}};
 
 void setup() {
   pinMode(switchPin, INPUT_PULLUP);
