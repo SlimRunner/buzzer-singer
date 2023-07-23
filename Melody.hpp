@@ -68,10 +68,10 @@ public:
    * @param repeat determines if the song will repeat or stop upon reaching the
    * end
    * @param bpm beats per minute of the song
-   * @param quarter duration of a quarter note
+   * @param baseBeat duration of the base note
    */
   Melody(const int pin, const Note *song, int size, bool repeat, int bpm,
-         int quarter);
+         int baseBeat);
 
   // default destructor
 
@@ -128,9 +128,9 @@ Melody::Melody(const int pin, const Note *song, int size, bool repeat)
 }
 
 inline Melody::Melody(const int pin, const Note *song, int size, bool repeat,
-                      int bpm, int quarter)
+                      int bpm, int baseBeat)
     : m_pin(pin), m_song(song), m_size(size), m_repeat(repeat), m_time(0),
-      m_resume(true), m_index(0), timeScalar(quarter * bpm) {
+      m_resume(true), m_index(0), timeScalar(baseBeat * bpm) {
   m_timeNext = m_song[m_index].duration();
   m_prevIndex = -1;
 }
