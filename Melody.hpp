@@ -76,7 +76,7 @@ public:
   // default destructor
 
   /**
-   * @brief advance the corresponding note and updates time
+   * @brief advance and play the corresponding note while updating time
    *
    */
   void advance();

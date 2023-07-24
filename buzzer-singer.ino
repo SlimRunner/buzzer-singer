@@ -22,7 +22,7 @@ void loop() {
       static_cast<int>(sizeof(melodies) / sizeof(melodies[0]));
   static Toggle songToggle(switchPin);
   static int songIndex = PLSIZE;
-  if (songToggle.update() && songToggle.isHigh()) {
+  if (songToggle.isToggled() && songToggle.isHigh()) {
     if (songIndex < PLSIZE) {
       melodies[songIndex].reset();
     }

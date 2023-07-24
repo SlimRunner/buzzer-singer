@@ -28,12 +28,12 @@ public:
   // default destructor
 
   /**
-   * @brief Update the current stored value of the switch
+   * @brief Determine signal has changed since last call
    *
    * @return true if switch state has changed
    * @return false otherwise
    */
-  bool update();
+  bool isToggled();
 
   /**
    * @brief Determine the state of the last update
@@ -72,7 +72,7 @@ Toggle::Toggle(uint8_t pin) : m_pin(pin), m_toggleState(false) {
   m_switchState = digitalRead(m_pin);
 }
 
-bool Toggle::update() {
+bool Toggle::isToggled() {
   int newState = digitalRead(m_pin);
   bool changed = m_switchState != newState;
   m_switchState = newState;
