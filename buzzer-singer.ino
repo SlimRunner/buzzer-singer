@@ -7,8 +7,9 @@ constexpr int switchPin = 7;
 
 Melody melodies[2] = {
     {melodyPin, zelda2, sizeof(zelda2) / sizeof(zelda2[0]), true, 128, 32},
-    // {melodyPin, passcg, sizeof(passcg) / sizeof(passcg[0]), true, 180, 32}};
-    {melodyPin, rv443c, sizeof(rv443c) / sizeof(rv443c[0]), true, 120, 32}};
+    {melodyPin, passcg, sizeof(passcg) / sizeof(passcg[0]), true, 180, 32}};
+    // {melodyPin, rv443c1, sizeof(rv443c1) / sizeof(rv443c1[0]), false, 120, 32}};
+    // {melodyPin, rv443c2, sizeof(rv443c2) / sizeof(rv443c2[0]), false, 120, 32}};
 
 void setup() {
   pinMode(switchPin, INPUT_PULLUP);
