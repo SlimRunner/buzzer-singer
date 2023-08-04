@@ -65,7 +65,7 @@ public:
   // default destructor
 
   /**
-   * @brief Determine signal has changed since last call
+   * @brief Determine if signal has changed since last call
    *
    * @return true if switch state has changed
    * @return false otherwise
