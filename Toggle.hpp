@@ -154,7 +154,7 @@ bool Toggle::isToggled() {
 
   static int lastState;
   int newState = digitalRead(m_pin);
-  int now = millis();
+  long now = millis();
   if (lastState != newState) {
     m_lastDebounce = now;
   }
@@ -164,8 +164,9 @@ bool Toggle::isToggled() {
     m_switchState = newState;
     if (changed && canToggle(newState)) {
       m_toggleState = !m_toggleState;
+      return true;
     }
-    return changed && canToggle(newState);
+    return false;
   }
 }
 
