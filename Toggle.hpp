@@ -153,14 +153,13 @@ bool Toggle::isToggled() {
   // https://docs.arduino.cc/built-in-examples/digital/Debounce
 
   static int lastState;
-  static int lastDebounce;
   int newState = digitalRead(m_pin);
   int now = millis();
   if (lastState != newState) {
-    lastDebounce = now;
+    m_lastDebounce = now;
   }
   lastState = newState;
-  if (now - lastDebounce > m_debounceDelay) {
+  if (now - m_lastDebounce > m_debounceDelay) {
     bool changed = m_switchState != newState;
     m_switchState = newState;
     if (changed && canToggle(newState)) {
