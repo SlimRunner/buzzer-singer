@@ -21,7 +21,7 @@ void loop() {
   constexpr int PLAYLIST_SIZE =
       static_cast<int>(sizeof(melodies) / sizeof(melodies[0]));
 
-  static Toggle songToggle(switchPin);
+  static Toggle songToggle(switchPin, 50);
   static int songIndex = PLAYLIST_SIZE;
 
   if (songToggle.isToggled()) {
