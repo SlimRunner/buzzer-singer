@@ -13,7 +13,6 @@ Melody melodies[1] = {
     // {melodyPin, rv443c3, sizeof(rv443c3) / sizeof(rv443c3[0]), false, 120, 120}};
 
 void setup() {
-  pinMode(switchPin, INPUT_PULLUP);
   pinMode(melodyPin, INPUT);
   Serial.begin(115200);
 }
@@ -25,7 +24,7 @@ void loop() {
   static Toggle songToggle(switchPin);
   static int songIndex = PLAYLIST_SIZE;
 
-  if (songToggle.isToggled() && songToggle.isHigh()) {
+  if (songToggle.isToggled()) {
     if (songIndex < PLAYLIST_SIZE) {
       melodies[songIndex].reset();
     }
