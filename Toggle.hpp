@@ -166,8 +166,8 @@ bool Toggle::isToggled() {
       m_toggleState = !m_toggleState;
       return true;
     }
-    return false;
   }
+  return false;
 }
 
 bool Toggle::isHigh() const { return m_switchState == HIGH; }
