@@ -107,7 +107,6 @@ void Melody::play() {
   if (m_song[m_index].isPitch()) {
     int pitch = m_song[m_index].pitch();
     if (m_index != m_prevIndex) {
-      Serial.println(m_index);
       tone(m_pin, eqlTemp(pitch));
     }
   } else {
